@@ -1,0 +1,25 @@
+<h1>Course Listing &mdash; <%= Curriculum::SEMESTER %></h1>
+
+<% if is_admin? %>
+<%= link_to 'New Course', new_course_path %>
+<% end %>
+
+<br><br>
+
+<div style="width: 650px; margin: 0 auto;">
+<% @courses.each do |course| %>
+	<%= link_to(course.course_code + ": " + course.title, course) %><br>
+	<i><%= course.instructor %></i> <br>
+	<%= course.description %> <br>
+	<%= course.time %> <br>
+	<i><%= course.credits %> credits</i> <br>
+
+	<% if is_admin? %>
+	<%= link_to 'Edit', edit_course_path(course) %> | <%= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete %>
+	<% end %>
+	
+	<hr style="width: 500px">
+<% end %>
+</div>
+
+<br />

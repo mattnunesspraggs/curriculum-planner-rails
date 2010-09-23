@@ -1,0 +1,5 @@
+<div style="width: 300px; float: right; text-align: right"><h1 style="text-align: right"><%= current_user.login %></h1>
+	<%= current_user[:first_name].prefer(current_user[:preferred_name]) + " " + current_user[:last_name] %><br>
+<%= link_to(current_user.email, "mailto:#{current_user.email}" ) %><br>
+Joined <%= (current_user.created_at).strftime("%B %d, %Y") %><br>
+</div>
