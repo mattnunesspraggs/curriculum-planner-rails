@@ -1,27 +1,23 @@
 Curriculum::Application.routes.draw do
+  resources :messages
   resources :users
-
+  resources :students
+  resources :schedules
+  resources :courses
   resource :session, :only => [:new, :create, :destroy]
 
-  match 'profile' => 'users#show', :as => :show
+  match 'inbox' => 'messages#inbox', :as => :inbox
+  match 'about' => 'home#about', :as => :about
+  match 'profile' => 'users#profile', :as => :profile
   match 'load_yaml' => 'courses#load_from_yaml', :as => :load_yaml
   match 'signup' => 'users#new', :as => :signup
-
   match 'register' => 'users#create', :as => :register
-
   match 'login' => 'sessions#new', :as => :login
-
   match 'logout' => 'sessions#destroy', :as => :logout
-
-  match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
-
+  match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code  => nil
+  match '/add_course_remote/:id' => 'schedules#add_course_remote', :as => :add_course_remote, :id => nil
+  
   get "home/index"
-
-  resources :students
-
-  resources :schedules
-
-  resources :courses
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

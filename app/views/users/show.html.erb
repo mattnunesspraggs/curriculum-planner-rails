@@ -1,5 +1,22 @@
-<div style="width: 300px; float: right; text-align: right"><h1 style="text-align: right"><%= current_user.login %></h1>
-	<%= current_user[:first_name].prefer(current_user[:preferred_name]) + " " + current_user[:last_name] %><br>
-<%= link_to(current_user.email, "mailto:#{current_user.email}" ) %><br>
-Joined <%= (current_user.created_at).strftime("%B %d, %Y") %><br>
+<div style="width: 300px; float: right; text-align: right"><h1 style="text-align: right"><%= @user.login %></h1>
+	<%= (@user[:preferred_name] || @user[:first_name]) + " " + @user[:last_name] %><br>
+<%= link_to(@user.email, "mailto:#{@user.email}" ) %><br>
+Joined <%= (@user.created_at).strftime("%B %d, %Y") %><br>
+<% if is_admin? %>
+	super-admin!<br>
+<% end %>
+</div>
+
+<div class="bordered">
+	<% if @user.unread.count > 0 %>
+		<h2><%= link_to "You have " + pluralize(@user.unread.count, "unread message") + "!", "/inbox" %></h2>
+	<% else %>
+		<%= link_to "You have " + pluralize(@user.envelopes.count, "message") + ".", "/inbox" %>
+	<% end %>
+</div>
+
+<div class="bordered">
+	<h3>Your Schedule</h3>
+	<%= @user.schedules.first.courses.inspect %>
+	<%= link_to "Add a Course", courses_path %>
 </div>

@@ -7,7 +7,6 @@ require 'rails/all'
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Curriculum
-    attr_accessor :term
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -43,6 +42,4 @@ module Curriculum
     # Custom directories with classes and modules you want to be autoloadable
     config.autoload_paths += %W(#{config.root}/lib)
   end
-  
-  SEMESTER = "Spring 2011"
 end

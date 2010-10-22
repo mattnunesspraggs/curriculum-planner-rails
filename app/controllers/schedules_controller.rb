@@ -80,4 +80,20 @@ class SchedulesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  #AJAX Method
+  def add_course_remote
+    @schedule = Schedule.find(current_user.current_schedule)
+    @course = Course.find(params[:id])
+    
+    @schedule.courses << @course
+    
+    if @schedule.save
+      render :layout => false
+      puts "Course Added"
+    else
+      render :layout => false
+      puts "Course Fail"
+    end
+  end
 end

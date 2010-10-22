@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  #before_filter :admin_required, :for => [:show]
    #before_filter :login_required, :for => :show
   # Be sure to include AuthenticationSystem in Application Controller instead
   
@@ -12,7 +13,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     success = @user && @user.save
     if success && @user.errors.empty?
-      redirect_to("/profile", :notice => "Thanks for signing up!  We're sending you an email with your activation code.")
+      @sched = Schedule.new({:user => @user})
+      redirect_to("/", :notice => "Thanks for signing up!  We're sending you an email with your activation code.")
     else
       flash.now[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
       render :action => 'new'
@@ -36,7 +38,16 @@ class UsersController < ApplicationController
   end
   
   def show
-      
+    if params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
+  end
+  
+  def profile
+    @user = current_user
+    render 'show'
   end
 
 end

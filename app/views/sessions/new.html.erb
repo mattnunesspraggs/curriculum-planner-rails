@@ -1,16 +1,13 @@
-<h1>Log In</h1>
+<div id="login" class='c'>
+	<%= form_tag session_path, :id => "login_form" do -%>
+	<p><%= label_tag 'login', "username", :class => "float_label" %><br />
+	<%= text_field_tag 'login', @login, :class => "full_w" %></p>
 
-<%= form_tag session_path do -%>
-<p><%= label_tag 'login' %><br />
-<%= text_field_tag 'login', @login %></p>
+	<p><%= label_tag 'password', "password", :class => "float_label" %><br/>
+	<%= password_field_tag 'password', nil, :class => "full_w" %></p>
 
-<p><%= label_tag 'password' %><br/>
-<%= password_field_tag 'password', nil %></p>
+	<p><%= check_box_tag 'remember_me', '1', @remember_me %><%= label_tag 'remember_me', 'remember me' %></p>
 
-<!-- Uncomment this if you want this functionality
-<p><%= label_tag 'remember_me', 'Remember me' %>
-<%= check_box_tag 'remember_me', '1', @remember_me %></p>
--->
-
-<p><%= submit_tag 'Log in' %></p>
-<% end -%>
+	<p><%= submit_tag 'login' %></p>
+	<% end -%>
+</div>

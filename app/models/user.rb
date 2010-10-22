@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
 
   set_table_name 'users'
-  has_many :schedule
+  has_many :schedules
+  has_many :envelopes, :foreign_key => :recipient_id, :conditions => ["deleted != ?", 1]
+  has_many :messages, :through => :envelopes
 
   validates :login, :presence   => true,
                     :uniqueness => true,
@@ -33,6 +35,10 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :first_name, :last_name, :class_year, :password, :password_confirmation
 
+
+  def unread #spit back list of unread messages
+    self.envelopes.delete_if{ |msg| msg.opened }
+  end
 
   # Activates the user in the database.
   def activate!
@@ -71,12 +77,23 @@ class User < ActiveRecord::Base
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
   end
+  
+  def name
+    (self.preferred_name || self.first_name) + " " + self.last_name
+  end
+  
+  def to_s
+    self.name
+  end
+  
+  def current_schedule
+    self.schedules.first
+  end
 
   protected
     
   def make_activation_code
       self.activation_code = self.class.make_token
   end
-
 
 end

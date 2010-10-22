@@ -25,6 +25,6 @@ Curriculum::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
   
-  ActionMailer::Base.smtp_settings = YAML::load( config.root + "/config/email.yaml" )
+  #ActionMailer::Base.smtp_settings = YAML::load( File.open(Curriculum::root + "/config/email.yaml") )
 end
 
