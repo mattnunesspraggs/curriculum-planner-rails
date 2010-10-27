@@ -1,0 +1,360 @@
+/* v1.0 | 20080212 */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+/*	font-size: 100%;*/
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* end css reset */
+
+body { background-color: #2D1C0C; color: #eee; }
+
+body, p, ol, ul, td {
+  font-family: helvetica, verdana, arial, sans-serif;
+	line-height: 1.5;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+div#container {
+	width: 950px;
+	margin: 20px auto;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #66A3FF; text-decoration: none; }
+a:hover { background-color:#66A3FF; color: #1b1b1b; }
+
+#content a {
+	color: #66A3FF;
+	font-weight: bold;
+}
+
+#content a:hover {
+	background-color: #1b1b1b;
+	color: #eee;
+}
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+hr {
+	clear: both;
+	border: 0;
+	background-color: gray;
+	height: 1px;
+}
+
+.message {
+	text-align: center;
+	border-radius: 5px;
+	padding: 5px 0px;
+	margin: 5px 0px;
+}
+
+.notice {
+	background-color: #FFFFCC;
+	color: #777;
+}
+
+.error {
+	background-color: #FF8080;
+	color: black;
+}
+
+.shadow {
+	text-shadow: 0.06em 0.06em 0.06em #111;
+}
+
+.h1 {
+	font-weight: bold;
+	font-size: 2.5em;
+}
+
+#header {
+	width: 100%;
+	height: 1.0em;
+	font-size: 50px;
+	color: #eee;
+	font-family: "Helvetica";
+	font-weight: bold;
+}
+
+#footer {
+	float: left;
+	padding: 10px 0px;
+	text-align: center;
+	width: 100%;
+}
+
+#site_label {
+	padding: 0px 10px;
+	float: left;
+	display: inline-block;
+}
+
+#site_label:hover {
+	color: #eee;
+	background: none;
+}
+
+#site_links {
+	text-align: right;
+	float: right;
+}
+
+#site_links a {
+	padding: 10px 10px;
+	color: #eee;
+	text-decoration: none;
+	border-radius: 5px;
+}
+
+#site_links a:hover {
+	text-shadow: none;
+	background-color: #000;
+}
+
+div#content {
+	text-align: left;
+	padding: 10px;
+	width: 930px;
+	min-height: 450px;
+	float: left;
+	background-color: #eee;
+	color: #1b1b1b;
+	border-radius: 15px;
+	
+}
+
+div#login {
+	width: 450px;
+	margin: 5em auto;
+	border: 1px dotted #777;
+	border-radius: 2em;
+}
+
+form#login_form {
+	
+}
+
+form#login_form label {
+	padding-left: 0.7em;
+	font-style: italic;
+	color: #444;
+}
+
+form#login_form .float_label {
+	float: left;
+}
+
+form#login_form input.full_w {
+	font-size: 3em;
+	width: 95%;
+}
+
+form#login_form input[type='submit'] {
+	padding: 0.25em 0.5em;
+	font-size: 2em;
+	border: 1px solid gray;
+	background-color: #eee;
+	border-radius: 2em;
+}
+
+form#login_form input[type='submit']:hover {
+	color: #eee;
+	background-color: #66A3FF;
+	-webkit-box-shadow: 1px 1px 1px #111;
+}
+
+form#login_form input[type='submit']:active {
+	position: relative;
+	left: 1px;
+	top: 1px;
+	-webkit-box-shadow: none;
+}
+
+.main-title {
+	font-weight: bold;
+	font-size: 30px;
+/*	color: #4C4;*/
+}
+
+a.main-banner span {
+	color: #333;
+}
+
+a.main-banner {
+	text-align: center;
+	display: block;
+	padding: 90px 10px;
+	line-height: 1.4;
+	margin: 1.5em auto;
+	width: 90%;
+	border-radius: 15px;
+	background-color: #66A3FF;
+	font-size: 32px;
+	text-shadow: 1px 1px 0px #bad3ed;
+}
+
+#content a.main-banner:hover {
+	background-color: #66A3FF;
+}
+
+a.main-banner:active {
+	background-color: #66A3FF;
+	-webkit-box-shadow: -1px -1px 0px #333;
+	position: relative;
+	left: 1px;
+	top: 1px;
+}
+
+.response {
+	font-size: 60px;
+}
+
+p.paragraph {
+	text-indent: 15px;
+	font-size: 15px;
+}
+
+#block_links { float: right; }
+#block_links a { display: inline-block; padding: 0.7em; border-radius: 5px; color: #1b1b1b; }
+#block_links a:active { color: #666; }
+#block_links a:hover { color: #eee; background-color:#2D1C0C; }
+
+.email-message {
+	text-align: left;
+	border: 1px dotted gray;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.email-message-body {
+	border-left: 1px dotted gray;
+	text-align: left;
+	margin: 10px;
+	padding: 5px 5px;
+}
+
+/* _course.erb.html */
+
+div.course_container {
+	padding: 10px;
+	border: 1px dotted gray;
+}
+
+div.course_container h2 {
+/*	float: left;*/
+}
+
+div.credits {
+	font-size: 8pt;
+	position: relative;
+	top: 0.5em;
+	float: right;
+	text-align: center;
+	min-width: 1em;
+	min-height: 1em;
+}
+
+.big {
+	font-size: 3em;
+}
+
+p.description {
+	position: relative;
+	width: 94%;
+	left: 4%;
+}
+
+form input:not([type="submit"]), textarea {
+	width: 100%;
+}

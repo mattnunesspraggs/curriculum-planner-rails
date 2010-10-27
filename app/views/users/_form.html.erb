@@ -1,0 +1,19 @@
+<%= error_messages_for @user %>
+
+<%= form_for( @user ) do |f| -%>
+
+<p><%= label_tag 'first_name' %><br />
+	<%= f.text_field :first_name %></p>
+
+<p><%= label_tag 'last_name' %><br />
+	<%= f.text_field :last_name %></p>
+
+<p><%= label_tag 'preferred_name' %><br />
+	<%= f.text_field :preferred_name %></p>
+
+<p><%= label_tag 'email' %><br/>
+<%= f.text_field :email %></p>
+
+<p><%= submit_tag 'Update' %></p>
+
+<% end %>

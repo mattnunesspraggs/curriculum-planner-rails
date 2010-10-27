@@ -1,0 +1,10 @@
+<div class='course_container'>
+	<div class='credits'><span class="big"><%= @course.credits %></span><br>credits</div>
+	<h2><%= link_to_unless_current("#{@course.code}: #{@course.title}", @course) %></h2>
+	<br>
+	<em><%= @course.instructor %></em>, <b><%= @course.time %></b><br />
+	<% if is_group?("admin") %>
+		<%= link_to 'Edit', edit_course_path(@course) %>
+		<%= link_to 'Destroy', @course, :confirm => 'Are you sure?', :method => :delete %>
+	<% end %>
+</div>
