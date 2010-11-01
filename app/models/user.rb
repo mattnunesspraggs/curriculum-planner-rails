@@ -60,12 +60,28 @@ class User < ActiveRecord::Base
     end
   end
   
+  def short_name
+    (self.preferred_name || self.first_name)
+  end
+  
   def to_s
     self.name
   end
   
   def private?
     self.private
+  end
+  
+  def enrolled_in(course)
+    self.courses.include?(course)
+  end
+  
+  def enroll(course)
+    self.courses << course if !enrolled_in(course)
+  end
+  
+  def drop_course(course)
+    self.courses.delete(course)
   end
   
   protected

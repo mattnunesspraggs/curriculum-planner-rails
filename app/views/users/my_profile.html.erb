@@ -1,17 +1,9 @@
 <% if @user.login == @user.name %>
 	<% flash[:notice] = raw("Hey you! yeah, what's-your-face! " + link_to("personalize your profile", edit_user_path( @user ) ) ) %>
 <% end %>
-<% credits = 0; @user.courses.each{|c| credits += c.credits } %>
-
-<div class='credits'><span class='big'><%= credits %></span><br>total<br>credits</div>
 
 <h2>Welcome, <%= @user.name %>!</h2>
 <br>
-<div id="courses" style="width: 500px; text-align: left;">
-	<h3>Your courses:</h3>
-<% @user.courses.each do |@course| %>
-	<%= render :partial => "short_course" %>
-	<br>
-<% end %>
-
+<div id="user_courses" style="width: 500px; text-align: left;">
+	<%= render :partial => "courses" %>
 </div>

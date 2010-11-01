@@ -137,11 +137,12 @@ hr {
 	border-radius: 5px;
 	padding: 5px 0px;
 	margin: 5px 0px;
+	background-color: #99FF99;
+	color: #777;
 }
 
 .notice {
 	background-color: #FFFFCC;
-	color: #777;
 }
 
 .error {
@@ -343,6 +344,7 @@ div.credits {
 	text-align: center;
 	min-width: 1em;
 	min-height: 1em;
+	line-height: 1em;
 }
 
 .big {
@@ -357,4 +359,8 @@ p.description {
 
 form input:not([type="submit"]), textarea {
 	width: 100%;
+}
+
+.c {
+	text-align: center;
 }

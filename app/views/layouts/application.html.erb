@@ -13,13 +13,9 @@
 			<div id="site_links"><%= logged_in? ? link_to("home", home_path) + link_to("logout", "/logout") : link_to("login", "/login") + link_to("signup", "/signup") %></div>
 		</div>
 		
-		<% flash.each do |key, msg| %>
-		    <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_#{key}" %>
-		    <% content_tag :script, :type => "text/javascript" do -%>
-		        setTimeout("$('div#notice_<%= key %>').fadeOut(300)", 15000);
-		    <% end %>
-		<% end %>
-		<% flash.discard %>
+		<div id="flash_messages">
+			<%= render :partial => "application/update_flash" %>
+		</div>
 		
 		<div id="content">
 			<%= yield %>

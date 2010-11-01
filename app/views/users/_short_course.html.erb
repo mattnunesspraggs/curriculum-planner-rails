@@ -1,8 +1,8 @@
 <div class='course_container'>
 	<div class='credits'><span class="big"><%= @course.credits %></span><br>credits</div>
-	<h2><%= link_to_unless_current("#{@course.code}: #{@course.title}", @course) %></h2>
-	<br>
-	<em><%= @course.instructor %></em>, <b><%= @course.time %></b><br />
+	<h2><%= link_to "#{@course.code}: #{@course.title}", @course %></h2>
+	 <span id="link<%= @course.id %>"><%= link_to "Remove from schedule", schedule_remove_course_path(@course), :remote => true %></span><br />
+	<em><%= @course.instructor %></em>, <b><%= @course.time %></b>
 	<% if is_group?("admin") %>
 		<%= link_to 'Edit', edit_course_path(@course) %>
 		<%= link_to 'Destroy', @course, :confirm => 'Are you sure?', :method => :delete %>

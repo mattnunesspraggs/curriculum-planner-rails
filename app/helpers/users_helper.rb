@@ -1,5 +1,13 @@
 module UsersHelper
   
+  def schedule_add_course_path(course)
+    "/schedule/add/" + course.id.to_s
+  end
+  
+  def schedule_remove_course_path(course)
+    "/schedule/remove/" + course.id.to_s
+  end
+  
   #
   # Use this to wrap view elements that the user can't access.
   # !! Note: this is an *interface*, not *security* feature !!
