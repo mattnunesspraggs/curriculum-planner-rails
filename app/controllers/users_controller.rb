@@ -1,5 +1,8 @@
+require 'icalendar'
+
 class UsersController < ApplicationController
-  # render new.rhtml
+  include Icalendar
+  # # render new.rhtml
   def new
     @user = User.new
   end
@@ -18,6 +21,20 @@ class UsersController < ApplicationController
     else
       flash.now[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
       render :action => 'new'
+    end
+  end
+  
+  def schedule
+    @calendar = Calendar.new
+    current_user.courses.each do |course|
+      course.to_event.each do |event|
+        @calendar.add_event(event)
+      end
+    end
+    
+    respond_to do |format|
+      format.ics { render :text => @calendar.to_ical }
+      format.html
     end
   end
   

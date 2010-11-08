@@ -7,6 +7,7 @@ gem 'rails', '3.0.0'
 
 gem 'mysql2'
 gem 'jquery-rails'
+gem 'icalendar'
 
 # Use unicorn as the web server
 # gem 'unicorn'

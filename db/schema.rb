@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(:version => 20101027010704) do
     t.string   "instructor"
     t.string   "title"
     t.string   "time"
-    t.text     "time_parsed"
     t.string   "subject"
     t.text     "description"
     t.integer  "credits"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "time_parsed"
   end
 
   create_table "courses_users", :id => false, :force => true do |t|

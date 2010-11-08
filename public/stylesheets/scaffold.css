@@ -133,6 +133,7 @@ hr {
 }
 
 .message {
+	display: none;
 	text-align: center;
 	border-radius: 5px;
 	padding: 5px 0px;
@@ -329,7 +330,7 @@ p.paragraph {
 
 div.course_container {
 	padding: 10px;
-	border: 1px dotted gray;
+/*	border: 1px dotted gray;*/
 }
 
 div.course_container h2 {
@@ -364,3 +365,61 @@ form input:not([type="submit"]), textarea {
 .c {
 	text-align: center;
 }
+
+/* calendar */
+
+/*div.calendar {
+	float: right;
+	font-size: 8pt;
+	display: inline-block;
+	border: 0.1em solid black;
+	overflow: hidden;
+}
+
+div.day-label {
+	height: 1.5em;
+}
+
+div.day {
+	float: left;
+	width: 13em;
+	border-left: 0.1em solid black;
+}
+
+div.hour {
+	border-top: 0.1em dotted black;
+	height: 2.4em;
+}
+
+div.day {
+	position: relative;
+	background: #ddd;
+}
+
+div.day:hover {
+	background-color: #FFFFCC;
+}
+
+div.weekend {
+	background: #ccf;
+}
+
+div.block {
+	z-index: 99;
+	position: absolute;
+	padding: 0.1em;
+	border: 0.1em solid black;
+	background: red;
+	float: left;
+	opacity: 0.75;
+	margin: 0 0.1em;
+	overflow: hidden;
+	border-radius: 5px;
+}
+
+div.times {
+	position: relative;
+	background-color: white;
+	width: 4em;
+	float: left;
+}*/

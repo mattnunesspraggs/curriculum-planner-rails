@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.xml
+  
   def index
     @courses = Course.all
 
