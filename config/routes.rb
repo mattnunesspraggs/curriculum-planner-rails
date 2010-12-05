@@ -6,8 +6,7 @@ CpRails::Application.routes.draw do
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
   match '/home' => 'users#profile', :as => :home
   match '/schedule/:action/:course', :controller => "schedule"
-  get '/schedule' => 'users#schedule'
-  post '/schedule' => 'schedule#schedule'
+  match '/schedule' => 'users#schedule'
 
   resources :courses, :users
   resource :session, :only => [:new, :create, :destroy]

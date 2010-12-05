@@ -54,14 +54,14 @@ class User < ActiveRecord::Base
   
   def name
     if !self.first_name or !self.last_name
-      self.login
+      return self.login
     else
-      (self.preferred_name || self.first_name) + " " + self.last_name
+      return (self.preferred_name || self.first_name) + " " + self.last_name
     end
   end
   
   def short_name
-    (self.preferred_name || self.first_name)
+    (self.preferred_name || self.first_name) || self.login
   end
   
   def to_s
@@ -78,10 +78,21 @@ class User < ActiveRecord::Base
   
   def enroll(course)
     self.courses << course if !enrolled_in(course)
+    self.save
   end
   
   def drop_course(course)
     self.courses.delete(course)
+    self.save
+  end
+  
+  def credits()
+    credits = 0
+    self.courses.each do |c|
+      credits += c.credits.to_i
+    end
+    
+    credits
   end
   
   protected

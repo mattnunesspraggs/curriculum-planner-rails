@@ -19,6 +19,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 body {
 	line-height: 1;
+	height: 100%;
 }
 ol, ul {
 	list-style: none;
@@ -53,224 +54,85 @@ table {
 
 /* end css reset */
 
-body { background-color: #2D1C0C; color: #eee; }
-
-body, p, ol, ul, td {
-  font-family: helvetica, verdana, arial, sans-serif;
-	line-height: 1.5;
-  font-size:   13px;
-  line-height: 18px;
+html, body {
+	height: 100%;
 }
 
-div#container {
-	width: 950px;
-	margin: 20px auto;
+body, .menu-item, #footer > a {
+	background-color: #264859; color: #eee;
 }
 
-pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
+body {
+	font-family: "Helvetica";
+	font-size: 12px;
 }
 
-a { color: #66A3FF; text-decoration: none; }
-a:hover { background-color:#66A3FF; color: #1b1b1b; }
-
-#content a {
-	color: #66A3FF;
-	font-weight: bold;
+#header, #footer, #inner-content, .message, #nav {
+	width: 75%;
+	min-width: 650px;
 }
 
-#content a:hover {
-	background-color: #1b1b1b;
-	color: #eee;
-}
-
-div.field, div.actions {
-  margin-bottom: 10px;
-}
-
-#notice {
-  color: green;
-}
-
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
-}
-
-#error_explanation {
-  width: 450px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-}
-
-#error_explanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: -7px;
-  margin-bottom: 0px;
-  background-color: #c00;
-  color: #fff;
-}
-
-#error_explanation ul li {
-  font-size: 12px;
-  list-style: square;
-}
-
-hr {
-	clear: both;
-	border: 0;
-	background-color: gray;
-	height: 1px;
-}
-
-.message {
-	display: none;
-	text-align: center;
-	border-radius: 5px;
-	padding: 5px 0px;
-	margin: 5px 0px;
-	background-color: #99FF99;
-	color: #777;
-}
-
-.notice {
-	background-color: #FFFFCC;
-}
-
-.error {
-	background-color: #FF8080;
-	color: black;
-}
-
-.shadow {
-	text-shadow: 0.06em 0.06em 0.06em #111;
-}
-
-.h1 {
-	font-weight: bold;
-	font-size: 2.5em;
+#header, #footer, #inner-content, .message {
+	padding: 10px 5px;
+	margin: 0px auto;
 }
 
 #header {
-	width: 100%;
-	height: 1.0em;
-	font-size: 50px;
-	color: #eee;
-	font-family: "Helvetica";
-	font-weight: bold;
+	padding-bottom: 0px;
 }
 
 #footer {
-	float: left;
-	padding: 10px 0px;
 	text-align: center;
-	width: 100%;
 }
 
-#site_label {
-	padding: 0px 10px;
-	float: left;
+#content {
+	background: url("/images/110.gif");
+	color: #1e2c30;
+}
+
+#inner-content {
+	min-height: 400px;
+	background-color: #eee;
+}
+
+#nav {
+	padding: 0px 5px;
+	overflow: hidden;
+	background-color: #264859;
+}
+
+#nav > .menu-item {
 	display: inline-block;
-}
-
-#site_label:hover {
-	color: #eee;
-	background: none;
-}
-
-#site_links {
-	text-align: right;
-	float: right;
-}
-
-#site_links a {
-	padding: 10px 10px;
-	color: #eee;
-	text-decoration: none;
-	border-radius: 5px;
-}
-
-#site_links a:hover {
-	text-shadow: none;
-	background-color: #000;
-}
-
-div#content {
-	text-align: left;
 	padding: 10px;
-	width: 930px;
-	min-height: 450px;
-	float: left;
+	
+	-webkit-border-radius: 2px 2px 0px 0px;
+	-moz-border-radius: 2px 2px 0px 0px;
+	border-radius: 2px 2px 0px 0px;
+}
+
+.menu-item:hover, #footer > a:hover, .current {
 	background-color: #eee;
-	color: #1b1b1b;
-	border-radius: 15px;
-	
+	color: #264859;
 }
 
-div#login {
-	width: 450px;
-	margin: 5em auto;
-	border: 1px dotted #777;
-	border-radius: 2em;
-}
-
-form#login_form {
-	
-}
-
-form#login_form label {
-	padding-left: 0.7em;
-	font-style: italic;
-	color: #444;
-}
-
-form#login_form .float_label {
-	float: left;
-}
-
-form#login_form input.full_w {
+a#site_label {
+	padding-bottom: 5px;
+	text-shadow: 2px 2px 2px #333;
 	font-size: 3em;
-	width: 95%;
-}
-
-form#login_form input[type='submit'] {
-	padding: 0.25em 0.5em;
-	font-size: 2em;
-	border: 1px solid gray;
-	background-color: #eee;
-	border-radius: 2em;
-}
-
-form#login_form input[type='submit']:hover {
-	color: #eee;
-	background-color: #66A3FF;
-	-webkit-box-shadow: 1px 1px 1px #111;
-}
-
-form#login_form input[type='submit']:active {
-	position: relative;
-	left: 1px;
-	top: 1px;
-	-webkit-box-shadow: none;
-}
-
-.main-title {
 	font-weight: bold;
-	font-size: 30px;
-/*	color: #4C4;*/
+	float: right;
+	display: inline-block;
+	color: #eee;
 }
 
-a.main-banner span {
-	color: #333;
+a {
+	text-decoration: none;
+	color: #264859;
+}
+
+a:hover {
+	color: #eee;
+	background-color: #264859;
 }
 
 a.main-banner {
@@ -282,144 +144,43 @@ a.main-banner {
 	width: 90%;
 	border-radius: 15px;
 	background-color: #66A3FF;
+	color: #333;
 	font-size: 32px;
 	text-shadow: 1px 1px 0px #bad3ed;
 }
 
-#content a.main-banner:hover {
-	background-color: #66A3FF;
+a.main-banner:hover {
+	-webkit-box-shadow: 2px 2px 2px #444;
+	-moz-box-shadow: 2px 2px 2px #444;
+	box-shadow: 2px 2px 2px #444;
+	
+	/* < IE9 won't show this but who really cares? */
 }
 
 a.main-banner:active {
 	background-color: #66A3FF;
-	-webkit-box-shadow: -1px -1px 0px #333;
 	position: relative;
-	left: 1px;
-	top: 1px;
+	left: 2px;
+	top: 2px;
 }
 
-.response {
-	font-size: 60px;
-}
+/* flash messages */
 
-p.paragraph {
-	text-indent: 15px;
-	font-size: 15px;
-}
-
-#block_links { float: right; }
-#block_links a { display: inline-block; padding: 0.7em; border-radius: 5px; color: #1b1b1b; }
-#block_links a:active { color: #666; }
-#block_links a:hover { color: #eee; background-color:#2D1C0C; }
-
-.email-message {
-	text-align: left;
-	border: 1px dotted gray;
-	border-radius: 10px;
-	padding: 10px;
-}
-
-.email-message-body {
-	border-left: 1px dotted gray;
-	text-align: left;
-	margin: 10px;
-	padding: 5px 5px;
-}
-
-/* _course.erb.html */
-
-div.course_container {
-	padding: 10px;
-/*	border: 1px dotted gray;*/
-}
-
-div.course_container h2 {
-/*	float: left;*/
-}
-
-div.credits {
-	font-size: 8pt;
-	position: relative;
-	top: 0.5em;
-	float: right;
+.message {
+	display: none;
+	min-width: 650px;
+	width: 75%;
 	text-align: center;
-	min-width: 1em;
-	min-height: 1em;
-	line-height: 1em;
+	margin: 0 auto;
+	background-color: #99FF99;
+	color: #777;
 }
 
-.big {
-	font-size: 3em;
+.notice {
+	background-color: #F5E67F;
 }
 
-p.description {
-	position: relative;
-	width: 94%;
-	left: 4%;
+.error {
+	background-color: #BA2F1D;
+	color: black;
 }
-
-form input:not([type="submit"]), textarea {
-	width: 100%;
-}
-
-.c {
-	text-align: center;
-}
-
-/* calendar */
-
-/*div.calendar {
-	float: right;
-	font-size: 8pt;
-	display: inline-block;
-	border: 0.1em solid black;
-	overflow: hidden;
-}
-
-div.day-label {
-	height: 1.5em;
-}
-
-div.day {
-	float: left;
-	width: 13em;
-	border-left: 0.1em solid black;
-}
-
-div.hour {
-	border-top: 0.1em dotted black;
-	height: 2.4em;
-}
-
-div.day {
-	position: relative;
-	background: #ddd;
-}
-
-div.day:hover {
-	background-color: #FFFFCC;
-}
-
-div.weekend {
-	background: #ccf;
-}
-
-div.block {
-	z-index: 99;
-	position: absolute;
-	padding: 0.1em;
-	border: 0.1em solid black;
-	background: red;
-	float: left;
-	opacity: 0.75;
-	margin: 0 0.1em;
-	overflow: hidden;
-	border-radius: 5px;
-}
-
-div.times {
-	position: relative;
-	background-color: white;
-	width: 4em;
-	float: left;
-}*/

@@ -2,7 +2,20 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.xml
   
+  protected
+  
+  def setup
+    if current_user
+      @enrolled_courses = current_user.courses.to_a
+    else
+      @enrolled_courses = false
+    end
+  end
+  
+  public
+  
   def index
+    setup()
     @courses = Course.all
 
     respond_to do |format|
@@ -14,6 +27,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.xml
   def show
+    setup()
     @course = Course.find(params[:id])
 
     respond_to do |format|

@@ -7,21 +7,24 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-	<div id="container">
-		<div id="header" class="shadow">
-			<a href="/" id="site_label">[plan]-i-fication</a>
-			<div id="site_links"><%= logged_in? ? link_to("home", home_path) + link_to("logout", "/logout") : link_to("login", "/login") + link_to("signup", "/signup") %></div>
+	<div id="header">
+		<a href="/" id="site_label">[plan]-i-fication</a>&nbsp;
+		<div id="nav">
+			<%= render "application/menu_links" %>
 		</div>
-		
+	</div>
+	
+	<div id="content">
 		<div id="flash_messages">
-			<%= render :partial => "application/update_flash" %>
+			<%= render "application/update_flash" %>
 		</div>
-		
-		<div id="content">
+		<div id="inner-content">
 			<%= yield %>
 		</div>
-		
-		<div id='footer'>&copy; 2010 | <a href="mailto:mnunes@bennington.edu">Matt Nunes</a>
+	</div>
+	
+	<div id='footer'>
+		&copy; 2010 | <a href="mailto:mnunes@bennington.edu">Matt Nunes</a>
 	</div>
 </body>
 </html>

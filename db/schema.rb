@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101027010704) do
+ActiveRecord::Schema.define(:version => 20101110212645) do
 
   create_table "courses", :force => true do |t|
     t.string   "code"
@@ -25,10 +25,28 @@ ActiveRecord::Schema.define(:version => 20101027010704) do
     t.text     "time_parsed"
   end
 
+  create_table "courses_time_periods", :id => false, :force => true do |t|
+    t.integer "course_id"
+    t.integer "time_period_id"
+  end
+
   create_table "courses_users", :id => false, :force => true do |t|
     t.integer "user_id"
     t.integer "course_id"
   end
+
+  create_table "time_periods", :force => true do |t|
+    t.string   "time"
+    t.string   "days"
+    t.integer  "t_start_h"
+    t.integer  "t_start_m"
+    t.integer  "t_end_h"
+    t.integer  "t_end_m"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "time_periods", ["time"], :name => "index_time_periods_on_time", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40

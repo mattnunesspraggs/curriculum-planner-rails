@@ -1,1 +1,5 @@
-<%= @user.name %>
+<h1><%= mail_to @user.email, @user.name %></h1>
+<br /><h4>Added Courses:</h4><br />
+<% @user.courses.each do |course| %>
+	<h2><%= link_to course, course %></h2><br />
+<% end %>

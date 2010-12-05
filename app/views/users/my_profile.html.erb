@@ -1,9 +1,6 @@
-<% if @user.login == @user.name %>
-	<% flash[:notice] = raw("Hey you! yeah, what's-your-face! " + link_to("personalize your profile", edit_user_path( @user ) ) ) %>
-<% end %>
-
-<h2>Welcome, <%= @user.name %>!</h2>
-<br
+<span class='h2'>Welcome, <%= @user.short_name %>! </span>
+<%= link_to "edit my profile", edit_user_path( @user ) %>
+<br>
 <div id="user_courses" style="width: 500px; text-align: left;">
 	<%= render :partial => "courses" %>
 </div>
