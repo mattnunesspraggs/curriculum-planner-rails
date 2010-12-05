@@ -38,6 +38,7 @@ module CpRails
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    config.secret_token = "T1h2I3s1I1s9M8y8SiewCarsEbtoTronKeN2919"
     
     config.generators do |g|
       g.test_framework :rspec
