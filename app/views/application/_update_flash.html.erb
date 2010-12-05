@@ -1,0 +1,15 @@
+<% flash.each do |key, msg| %>
+    <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_#{key}" %>
+    <%= content_tag :script, :type => "text/javascript" do -%>
+        setTimeout(function() {
+			$('div#notice_<%= key %>').slideUp("$('div#notice_<%= key %>').remove();")
+			}, 15000);
+    <% end %>
+	<% flash.discard %>
+<% end %>
+
+<%= content_tag :script, :type => "text/javascript" do %>
+	$(document).ready( function() {
+		$('.message').slideToggle();
+	})
+<% end %>

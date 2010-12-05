@@ -184,3 +184,7 @@ a.main-banner:active {
 	background-color: #BA2F1D;
 	color: black;
 }
+
+.h2 {
+	font-size: 2em;
+}

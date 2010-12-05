@@ -1,0 +1,192 @@
+<style>
+	.class-list {
+		float: left;
+		width: 152px;
+	}
+	
+	#class-list div {
+		clear: both;
+		position: static;
+		width: 151px;
+	}
+</style>
+<div style="text-align: right; font-size: 40px; padding: 5px; font-weight: 500">
+	<div id='total-credits' style="float: left; width: 145px; font-size: 20px; text-align: center;"></div>
+	YOUR SCHEDULE
+</div>
+
+<div class="calendar">
+	<div class="class-list" id="class-list">
+	
+	</div>
+	<div class="times">
+		<div class="day-label">&nbsp;</div>
+		<div class="hour">7am</div>
+		<div class="hour">8am</div>
+		<div class="hour">9am</div>
+		<div class="hour">10am</div>
+		<div class="hour">11am</div>
+		<div class="hour">12noon</div>
+		<div class="hour">1pm</div>
+		<div class="hour">2pm</div>
+		<div class="hour">3pm</div>
+		<div class="hour">4pm</div>
+		<div class="hour">5pm</div>
+		<div class="hour">6pm</div>
+		<div class="hour">7pm</div>
+		<div class="hour">8pm</div>
+		<div class="hour">9pm</div>
+	</div>
+	<!-- <div class="day weekend" id="0">
+	<div class="day-label">Sunday</div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+	</div> -->
+	<div class="day" id="1">
+		<div class="day-label">Monday</div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+	</div>
+	<div class="day" id="2">
+		<div class="day-label">Tuesday</div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+	</div>
+	<div class="day" id="3">
+		<div class="day-label">Wednesday</div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+	</div>
+	<div class="day" id="4">
+		<div class="day-label">Thursday</div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+	</div>
+	<div class="day" id="5">
+		<div class="day-label">Friday</div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+	</div>
+	<!-- <div class="day weekend" id="6">
+	<div class="day-label">Saturday</div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+		<div class="hour"></div>
+	</div> -->
+</div>
+
+<%= render :partial => "update_schedule.js" %>
+<%= content_tag :script, :type => 'text/Javascript' do %>		
+	$('document').ready( function() {
+		$('.time-block').hover(
+			function() {
+				var id = $(this).attr("id");
+				var these = $("." + id);
+
+				var x = $(these).css('background-color');
+				$(these).css('background-color', $(these).css('color'));
+				$(these).css('color', x);
+				$(these).css('z-index', '100');
+				$(these).css('opacity', '1');
+			}, function() {
+				var id = $(this).attr("id");
+				var these = $("." + id);
+				
+				var x = $(these).css('background-color');
+				$(these).css('background-color', $(these).css('color'));
+				$(these).css('color', x);
+				$(these).css('z-index', '50');
+				$(these).css('opacity', '.75');
+			});
+	});
+<% end %>

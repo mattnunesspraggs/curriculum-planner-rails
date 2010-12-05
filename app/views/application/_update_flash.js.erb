@@ -1,0 +1,4 @@
+$('#flash_messages').html(
+	function() { 
+		$(this).html($(this).html() + "<%= raw( escape_javascript( render :partial => "application/update_flash.html" ) ) %>");
+	});

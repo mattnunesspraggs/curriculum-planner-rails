@@ -1,0 +1,6 @@
+var x = $('#user_courses');
+x.html("<%= escape_javascript(render :template => 'users/_courses') %>");
+
+var y = $('#flash_messages');
+		y.html(y.html() + "<%= escape_javascript(render :partial => 'application/update_flash') %>");
+		x = y = null;

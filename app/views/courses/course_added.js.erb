@@ -1,0 +1,5 @@
+<%= render "application/update_flash.js.erb" %>
+$('#link<%= @course.id %>').fadeOut(100, function() {
+	$(this).html("Course added! <%= escape_javascript(link_to 'Remove from schedule', schedule_remove_course_path(@course), :remote => true) %>");
+	$(this).fadeIn(100);
+});

@@ -1,0 +1,11 @@
+<% link = [] %>
+<% if logged_in? %>
+	<% link << ["Home", profile_path] << ["Schedule view", schedule_path] << ["Logout", logout_path] %>
+<% else %>
+	<% link << ["Home", "/"] << ["Login", login_path] << ["Signup", signup_path] %>
+<% end %>
+
+<% link.each do |link_label, link_url| %>
+	<% html_class = (link_url == request.request_uri ? "menu-item current" : "menu-item") %>
+	<%= link_to link_label, link_url, :class => html_class %>
+<% end %>

@@ -1,0 +1,14 @@
+<div class='credits'><span class='big'><%= @user.credits %></span><br>total<br>credits</div>
+<br /><br />
+<% if @user.courses.empty? %>
+	<h3>You aren't enrolled in any courses! <%= link_to "Go find some courses", courses_path %></h3>
+<% else %>
+	<h3>You are enrolled in <%= pluralize(@user.courses.count, 'course') %>:</h3>
+
+	<% @user.courses.each do |course| %>
+		<%= render :partial => "users/short_course", :locals => {:course => course} %>
+		<br>
+	<% end %>
+	
+	<h4 class='c'><%= link_to "Course listing", courses_path %></h4>
+<% end %>
