@@ -17,24 +17,23 @@ class CoursesController < ApplicationController
   public
   
   def upload
-    
+    @errors = []
   end
   
   def upload_remote
+    @errors = []
     
     if params[:delete_all]
       Course.all.each do |course|
-        c.destroy
+        course.destroy
       end
     end
     
     if params[:file]
-      courses, records = parse_tsf( params[:file] )
+      courses, records = parse_csv( params[:file] )
       
       # CompositeCourseNumber, DefaultCreditHours, Title, CourseDescription, InstructorFirstNameLastName, Period
       map = { :code => "CompositeCourseNumber", :credits => "DefaultCreditHours", :description => "CourseDescription", :title => "Title", :instructor => "InstructorFirstNameLastName", :time => "Period"}
-      
-      errors = []
       
       courses.each do |course|
         c = Course.new
@@ -42,20 +41,23 @@ class CoursesController < ApplicationController
           c[model_attr] = course[field]
         end
         
-        if !c.valid? then errors << [course, c.errors] end
+        if !c.valid? then 
+          @errors << [c, c.errors.map{ |k,v| k.to_s + " " + v }]
+        else
+          c.save
+        end
       end
       
-      if errors.empty?
+      if @errors.empty?
         flash[:notice] = courses.count #.to_s + " uploaded successfully."
       else
-        flash[:error] = errors.count.to_s + " errors"
-        Rails.logger.error(errors.inspect)
+        flash[:error] = "There were #{@errors.count} fatal errors. See details below."
       end
     else
       flash[:error] = "File upload failed."
     end
     
-    redirect_to "/courses/upload"
+    render "upload"
   end
   
   def remote_search
@@ -63,8 +65,17 @@ class CoursesController < ApplicationController
     @courses = Course.where("code LIKE :q OR title LIKE :q OR instructor LIKE :q OR description LIKE :q or time LIKE :q", :q => ("%" + params["q"] + "%"))
     
     respond_to do |format|
-      format.js {
-      }
+      format.js
+    end
+  end
+  
+  def random
+    @course = Course.order("RAND()").limit(1).all.first
+    @title = @course.to_s
+    
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @course }
     end
   end
   

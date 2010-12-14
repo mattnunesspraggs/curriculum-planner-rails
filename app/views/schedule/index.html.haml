@@ -1,0 +1,50 @@
+%div#class-list
+
+%div.calendar
+	- times = ["7am","8am","9am","10am","11am", "12noon", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm"]
+	- time_slots = times.count - 1
+	- days = [*(1..5)]
+	
+	%div.times
+		%div.day-label
+		- times.each do |time|
+			%div.hour= time
+	
+	- days.each do |day|
+		%div{ :id => day, :class => "day" }
+			%div.day-label= FULL_DAYS[day]
+			- 0.upto(time_slots) do |x|
+				%div.hour
+
+%div.clear
+%br
+%div{ :style => "text-align: center" }
+	= link_to "Download Schedule as .ICS file", "/schedule.ics", { :class => "button" }
+	%br
+	%br
+	= link_to "What does one do with an .ICS file?", "/import-ics-file"
+
+= render :partial => "update_schedule.js"
+:javascript
+	$('document').ready( function() {
+		$('.time-block').hover(
+			function() {
+				var id = $(this).attr("id");
+				var these = $("." + id);
+
+				var x = $(these).css('background-color');
+				$(these).css('background-color', $(these).css('color'));
+				$(these).css('color', x);
+				$(these).css('z-index', '100');
+				$(these).css('opacity', '1');
+			}, function() {
+				var id = $(this).attr("id");
+				var these = $("." + id);
+
+				var x = $(these).css('background-color');
+				$(these).css('background-color', $(these).css('color'));
+				$(these).css('color', x);
+				$(these).css('z-index', '50');
+				$(these).css('opacity', '.75');
+			});
+	});

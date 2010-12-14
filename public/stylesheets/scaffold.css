@@ -6,7 +6,7 @@ a, abbr, acronym, address, big, cite, code,
 del, dfn, em, font, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
-dl, dt, dd, ol, ul, li,
+dl, dt, dd, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
 	margin: 0;
@@ -21,7 +21,7 @@ body {
 	line-height: 1;
 	height: 100%;
 }
-ol, ul {
+ul {
 	list-style: none;
 }
 blockquote, q {
@@ -52,28 +52,67 @@ table {
 	border-spacing: 0;
 }
 
+th {
+	text-align: left;
+}
+
+.l {
+	text-align: left;
+}
+
+.c {
+	text-align: center;
+}
+
+p {
+	margin: 5px 0px 10px 0px;
+}
+
+.indent {
+	padding-left: 20px;
+}
+
+.col3 {
+	float: left;
+	width: 32%;
+	padding: 10px 5px;
+}
+
+.grid {
+	min-height: 3em;
+}
+
+.upload_error {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+	margin: 10px 0px;
+	padding: 5px;
+	
+	background-color: #FF8080;
+}
+
 /* end css reset */
 
 html, body {
 	height: 100%;
 }
 
-body, .menu-item, #footer > a {
-	background-color: #264859; color: #eee;
-}
-
 body {
 	font-family: "Helvetica";
 	font-size: 12px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#DDD));
+	background-attachment: fixed;
 }
 
-#header, #footer, #inner-content, .message, #nav {
+#header, #footer, #inner-content, .message {
 	width: 75%;
 	min-width: 650px;
 }
 
 #header, #footer, #inner-content, .message {
-	padding: 10px 5px;
+	padding: 10px 0px;
 	margin: 0px auto;
 }
 
@@ -82,57 +121,69 @@ body {
 }
 
 #footer {
+	clear: both;
 	text-align: center;
 }
 
 #content {
-	background: url("/images/110.gif");
-	color: #1e2c30;
+
 }
 
 #inner-content {
 	min-height: 400px;
-	background-color: #eee;
+/*	background-color: #eee;*/
 }
 
-#nav {
-	padding: 0px 5px;
-	overflow: hidden;
-	background-color: #264859;
+.clear {
+	clear: both;
+}
+
+#nav, #footer {
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#CCC));
+	border-radius: 5px;
+	border: 1px solid #bbb;
+	clear: both;
 }
 
 #nav > .menu-item {
 	display: inline-block;
 	padding: 10px;
+	margin: 1px 1px;
+	color: #444;
 	
-	-webkit-border-radius: 2px 2px 0px 0px;
-	-moz-border-radius: 2px 2px 0px 0px;
-	border-radius: 2px 2px 0px 0px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 
-.menu-item:hover, #footer > a:hover, .current {
-	background-color: #eee;
-	color: #264859;
+#nav > .menu-item:hover, #nav > .current {
+	color: white;
+	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#222));
+	text-decoration: none;
 }
 
 a#site_label {
-	padding-bottom: 5px;
-	text-shadow: 2px 2px 2px #333;
+	margin: 5px;
+	margin-bottom: 10px;
+	text-shadow: 2px 2px 2px #999;
 	font-size: 3em;
 	font-weight: bold;
 	float: right;
 	display: inline-block;
-	color: #eee;
+	color: #333;
+}
+
+a#site_label:hover {
+	text-decoration: none;
 }
 
 a {
 	text-decoration: none;
-	color: #264859;
+	color: #3399FF;
 }
 
 a:hover {
-	color: #eee;
-	background-color: #264859;
+	text-decoration: underline;
 }
 
 a.red {
@@ -151,7 +202,22 @@ a.subject_code_toggle {
 	padding: 10px 0px;
 }
 
+a.subject_code_toggle:hover {
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	
+	text-decoration: none;
+	
+	color: #FFF;
+	background-color: #3399FF;
+}
+
 a.main-banner {
+	-webkit-box-shadow: 2px 2px 2px #444;
+	-moz-box-shadow: 2px 2px 2px #444;
+	box-shadow: 2px 2px 2px #444;
+	
 	text-align: center;
 	display: block;
 	padding: 90px 10px;
@@ -166,9 +232,8 @@ a.main-banner {
 }
 
 a.main-banner:hover {
-	-webkit-box-shadow: 2px 2px 2px #444;
-	-moz-box-shadow: 2px 2px 2px #444;
-	box-shadow: 2px 2px 2px #444;
+	
+	text-decoration: none;
 	
 	/* < IE9 won't show this but who really cares? */
 }
@@ -178,6 +243,26 @@ a.main-banner:active {
 	position: relative;
 	left: 2px;
 	top: 2px;
+}
+
+.button {
+	display: inline-block;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#CCC));
+	padding: 10px;
+	color: #000;
+	border: 1px solid #BBB;
+	border-radius: 2px;
+}
+
+.button:hover {
+	text-decoration: none;
+	background: -webkit-gradient(linear, left top, left bottom, from(#CCC), to(#999));
+	color: #000;
+}
+
+.button:active {
+	text-decoration: none;
+	color: #0066FF;
 }
 
 /* flash messages */
@@ -235,15 +320,6 @@ div.credits {
 
 /* calendar */
 
-div.class_list {
-	float: left;
-}
-
-div.class_list .class {
-	display: block;
-	padding: 5px;
-}
-
 div.calendar {
 	width: 75%;
 	float: right;
@@ -270,10 +346,6 @@ div.hour {
 	height: 24px;
 }
 
-div.day {
-
-}
-
 div.day:hover {
 	background-color: #FFFFCC;
 }
@@ -283,17 +355,27 @@ div.weekend {
 }
 
 .time-block {
-	width: 90%;
-	z-index: 1;
-	position: absolute;
-	padding: 2px;
-	border: 1px solid black;
+	padding: 0px 5px;
 	background: red;
 	float: left;
 	opacity: 0.75;
-	margin: 0 3%;
 	overflow: hidden;
+}
+
+.time-block:hover {
+	text-decoration: none;
+}
+
+.schedule-block {
+	padding: 2px;
+	border: 1px solid black;
+	webkit-border-radius: 5px;
+	moz-border-radius: 5px;
 	border-radius: 5px;
+	position: absolute;
+	margin: 0 4px;
+	width: 90%;
+	z-index: 1;
 }
 
 div.times {
@@ -306,11 +388,13 @@ div.times {
 
 #class-list {
 	float: left;
+	margin-left: 10px;
 	width: 22%;
+	height: 447px;
 	position: relative;
 }
 
-#class-list div {
+#class-list a {
 	clear: both;
 	position: static;
 	width: 100%;
@@ -357,6 +441,59 @@ div.times {
 	border-bottom: 1px solid black;
 }
 
-form input:not[type="submit"] {
-	width: 40%;
+label {
+	font-style: italic;
+	color: #777;
+}
+
+input[type='text'], input[type='password'], textarea {
+	border: 1px solid #1b1b1b;
+	
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+div.login_form h2 {
+	font-weight: 200;
+	color: #aaa;
+	
+	text-shadow: #fff 1px 1px 1px;
+}
+
+div.login_form {
+	width: 30%;
+	margin: 75px auto 0px auto;
+	color: #aaa;
+	text-shadow: #fff 1px 1px 1px;
+}
+
+div.login_form input[type="text"], div.login_form input[type="password"] {
+	border: 1px solid #ccc;
+	font-size: 30px;
+	width: 100%;
+}
+
+div.login_form input[type="submit"], div.login_form input[type="reset"] {
+	font-size: 20px;
+}
+
+/* pages */
+
+.left_col {
+	width: 49%;
+	float: left;
+}
+.right_col {
+	width: 49%;
+	float: right;
+	text-align: right;
+}
+.tags {
+	color: #888;
+	font-style: italic;
+}
+#page_content {
+	font-size: 15px;
+	min-height: 400px;
 }

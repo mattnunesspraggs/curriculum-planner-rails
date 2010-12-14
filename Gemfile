@@ -8,6 +8,8 @@ gem 'rails', '3.0.0'
 gem 'mysql2'
 gem 'jquery-rails'
 gem 'icalendar'
+gem 'haml'
+gem 'time_diff'
 
 # Use unicorn as the web server
 # gem 'unicorn'

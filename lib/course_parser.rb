@@ -6,11 +6,11 @@ module CourseParser
   TIME_REGEX = /(?:([\d]+)(?::(\d+))?)(am|pm|noon)?/
   PERIOD_REGEX = /([0-9]+)?[\s]*#{TIME_REGEX}[\s]*-[\s]*#{TIME_REGEX}/i
   
-  def parse_tsf(file)
+  def parse_csv(file)
     courses = []
     
-    CSV::open(file.path, 'r').each do |r|
-      #courses << r
+    CSV::foreach(file.path) do |r|
+      courses << r
     end
     
     records = courses.delete_at(0)
@@ -27,8 +27,37 @@ module CourseParser
   end
   
   def parse
-    parse_time
+    if self.time.nil?
+      self.time = "TBA"
+    else
+      parse_time
+      parse_ical
+    end
+    
     parse_subject
+    
+    true
+  end
+  
+  def parse_ical
+    ical_str = []
+    
+    s = self.start_date ? Date.parse(self.start_date) : CLASSES_START
+    e = self.end_date ? Date.parse(self.end_date) : CLASSES_END
+    
+    self.time_periods.each do |t|
+      ev = Icalendar::Event.new
+      
+      ev.dtstart = DateTime.new( s.year, s.month, s.day, t.t_start_h, t.t_start_m )
+      ev.duration = t.length("ical")
+      ev.recurrence_rules = ["FREQ=WEEKLY;BYDAY=" + t.days(true).join(",") + ";UNTIL=" + e.strftime( "%Y%m%dT235959" )]
+      ev.summary = self.code + ": " + self.title + " with " + self.instructor
+      ev.description = self.description + " " + self.credits.to_s + " credits."
+      
+      ical_str << ev.to_ical
+    end
+    
+    self.time_parsed = ical_str.join
   end
   
   def parse_time

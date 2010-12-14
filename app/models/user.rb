@@ -98,11 +98,22 @@ class User < ActiveRecord::Base
   
   def credits()
     credits = 0
-    self.courses.each do |c|
-      credits += c.credits.to_i
-    end
+    self.courses.map{ |x| credits += x.credits }
     
     credits
+  end
+  
+  def time(format = "")
+    hours = 0
+    self.courses.each{ |c| hours += c.time_commitment("decimal") }
+  
+    if format == "decimal"
+      return hours.round(2)
+    else
+      m = hours % 1
+      h = hours - m
+      return h.to_s + " hours " + (m*60).to_s + " minutes"
+    end
   end
   
   protected

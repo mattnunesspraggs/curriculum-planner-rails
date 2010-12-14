@@ -1,0 +1,26 @@
+%h1 Listing pages
+%br
+%table{ :width=>"100%" }
+	%tr
+		%th Title
+		%th Author
+		%th Slug
+		%th Tags
+		%th 
+
+	- @pages.each do |page|
+		%tr
+			%td= page.title
+			%td= page.author
+			%td= page.slug
+			%td= page.tags
+			%td 
+				= link_to 'Show', page
+				|
+				= link_to 'Edit', edit_page_path(page)
+				|
+				= link_to 'Destroy', page, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Page', new_page_path

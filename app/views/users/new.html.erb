@@ -1,6 +1,6 @@
 <h1>Sign up as a new user</h1>
 <% @user.password = @user.password_confirmation = nil %>
-
+<br />
 <%= error_messages_for :user %>
 <%= form_for :user, :url => users_path do |f| -%>
 
@@ -16,5 +16,5 @@
 <p><%= label_tag 'password_confirmation', 'Confirm Password' %><br/>
 <%= f.password_field :password_confirmation %></p>
 
-<p><%= submit_tag 'Sign up' %></p>
+<p><%= submit_tag 'Sign up', :class => "button" %></p>
 <% end -%>

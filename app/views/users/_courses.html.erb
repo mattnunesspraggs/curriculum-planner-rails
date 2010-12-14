@@ -10,5 +10,7 @@
 		<br>
 	<% end %>
 	
-	<h4 class='c'><%= link_to "Course listing", courses_path %></h4>
+	<h2 class='c'><%= link_to "Course listing", courses_path, {:class=>"button"} %></h2>
+	<br />
+	<div class="c"><%= link_to "How do I add courses?", "/help-adding-courses" %></div>
 <% end %>

@@ -1,0 +1,30 @@
+%h1
+	= @page.title
+%h4{ :class => "author" }
+	%em
+		By
+		= link_to @page.author, @page.author
+- if is_group?( "admin" )
+	= link_to "New", new_page_path
+	|
+	= link_to "All", pages_path
+	|
+	= link_to "Edit", edit_page_path(@page)
+	|
+	= link_to 'Destroy', @page, :confirm => 'Are you sure?', :method => :delete
+%br
+%br
+%div#page_content
+	= raw( @page.content )
+	
+%div.left_col
+	- if @tags
+		Tags: 
+		%span.tags
+			= @tags.join(", ")
+%div.right_col
+	Updated 
+	/ = @updated
+	/ or
+	= time_diff_format( @time_diff, :minute )
+	ago.

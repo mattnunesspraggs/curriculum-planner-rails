@@ -1,6 +1,6 @@
 <span class='h2'>Welcome, <%= @user.short_name %>! </span>
 <%= link_to "edit my profile", edit_user_path( @user ) %>
 <br>
-<div id="user_courses" style="width: 500px; text-align: left;">
+<div id="user_courses" style="width:75%; text-align: left;">
 	<%= render :partial => "courses" %>
 </div>

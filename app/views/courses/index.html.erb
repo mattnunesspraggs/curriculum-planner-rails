@@ -1,11 +1,11 @@
+<h1>Listing all courses</h1>
+
 <style>
-	/* ... beggars can't be choosers. */
 	.course_container {
 		display: none;
 	}
 </style>
 
-<h1>Listing all courses</h1>
 <% if is_group?("admin") %>
 	<%= link_to "Add", new_course_path %> or 
 	<%= link_to "Upload new curriculum", upload_courses_path %>

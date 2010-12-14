@@ -37,7 +37,7 @@
 	<%= link_to 'Delete account', delete_status_path(@user), :confirm => 'Are you sure? This is [kinda] irreversible!', :class => "red" %><br />
 <% end %>
 <br />
-<p><%= submit_tag 'Save changes' %> or <%= link_to "Never mind.", profile_path %></p>
+<p><%= submit_tag 'Save changes', :class => 'button' %> or <%= link_to "Never mind.", profile_path, :class => 'button' %></p>
 
 <% end %>
 <br /><br />

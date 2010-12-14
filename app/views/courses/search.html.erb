@@ -9,7 +9,7 @@
 	
 	<%= content_tag :script, :type => "text/javascript" do %>
 	$(document).ready(function() {
-		var q = $('#q');
+		var q = $('#q'), timeInt = "";
 		
 		$(q).focusin(function() {
 			$(this).css("color", "black");
@@ -25,9 +25,17 @@
 		
 		$(q).keypress(function(e) {
 			if(e.keyCode == 13) {
-				$('#search_form').submit();
-				$('#search-results').html("<h1>Results loading...</h1>");
+				submitSearch();
 			};
+			clearTimeout(timeInt);
+			timeInt = setTimeout( function() {
+				submitSearch();
+			}, 1000);
 		});
+		
+		function submitSearch(){
+			$('#search_form').submit();
+			$('#search-results').html("<h1>Results loading...</h1>");
+		}
 	});
 	<% end %>

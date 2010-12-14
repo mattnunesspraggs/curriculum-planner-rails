@@ -1,10 +1,23 @@
 class ScheduleController < ApplicationController
   before_filter :login_required
   
-  def schedule
+  def index
+    @title = "Schedule viewer"
     @courses = current_user.courses
     
+    unscheduled = []
+    @courses.each do |c|
+      if c.time == "TBA"
+        unscheduled << "\"" + c.title + "\""
+      end
+    end
+    
+    if unscheduled.count > 0
+      flash[:notice] = "Not seeing all your courses? " + unscheduled.to_sentence + (unscheduled.count == 1 ? " is" : " are" ) + " not yet scheduled, so we won't bother to put them up here."
+    end
+    
     respond_to do |format|
+      format.html
       format.ics
     end
   end

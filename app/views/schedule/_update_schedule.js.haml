@@ -1,0 +1,46 @@
+:ruby
+	user_time_commitment = current_user.time("decimal")
+	classes, week = [], {}
+
+	@courses.each do |course|
+		color, bg_color = random_rgb
+		
+		inner_text = "<br />#{course.title}<br />#{course.credits} credits - #{course.time_commitment} / week"
+	
+		class_block_height = (course.time_commitment("decimal") / user_time_commitment) * 100
+		class_block = link_to( (inner_text).html_safe, course,
+		:class => "time-block class-block course_#{course.id}", :id => "course_#{course.id}",
+		:style => "height: #{class_block_height}%; background-color: ##{bg_color}; color: ##{color}")
+		
+		classes << class_block
+		
+		course.time_periods.each do |tp|
+			start = tp.start_time( "decimal" )
+			len = tp.length("decimal")
+			
+			top = 21 + ((start - 7) * 25)
+			height = (len * 25) - 6
+			
+			block = link_to( course.title, course, 
+			:class => "time-block schedule-block course_#{course.id}", :id => "course_#{course.id}",
+			:style => "top: #{top}px; height: #{height}px; background-color: ##{bg_color}; color: ##{color}",
+			:title => course.time )
+			
+			tp.days.each do |d| 
+				if week[d]
+					week[d] << block
+				else
+					week[d] = [block]
+				end
+			end
+		end
+	end
+	
+	classes = escape_javascript( classes.join("\n") ).html_safe
+
+%script{ :type => "text/JavaScript" }
+	$(document).ready( function() {
+	$('#class-list').html("#{classes}");
+	- week.each do |k, v|
+		$('div##{k}').html( $('div##{k}').html() + "#{ escape_javascript( raw( v.join() ) ) }");
+	});
