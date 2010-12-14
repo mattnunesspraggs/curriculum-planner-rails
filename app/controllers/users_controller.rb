@@ -1,7 +1,7 @@
 require 'icalendar'
 
 class UsersController < ApplicationController
-  before_filter :login_required, :except => [:new, :create, :delete]
+  before_filter :login_required, :except => [:new, :create]
   before_filter :admin_required, :only => [:index, :destroy]
   
   include Icalendar
@@ -40,16 +40,7 @@ class UsersController < ApplicationController
       render :action => 'new'
     end
   end
-  
-  def schedule
-    @title = "Schedule viewer"
-    @courses = current_user.courses
-    
-    respond_to do |format|
-      format.html
-    end
-  end
-  
+
   def edit
     @title = "Edit"
     if is_group?("admin")
@@ -75,16 +66,9 @@ class UsersController < ApplicationController
         flash[:notice] = "Profile updated!"
       else
         flash[:error] = "There was a problem. We've dispatched error-sniffing monkeys. In the meantime, try correcting these errors."
-        Rails.logger.error "\n### USER ERROR #{Time.now} ###\n
-        Current User: #{current_user.inspect}\n
-        @user: #{@user.inspect}\n
-        @user.errors: #{@user.errors}\n
-        ### END ###\n\n"
       end
     else
       flash[:error] = "Ah, nice try komrad, but in Soviet Russia, account does not allow you to hack it (Yeah, figure THAT joke out). Alternatively, you do not have permissions to do that."
-      Rails.logger.error "\n### ACCESS ERROR #{Time.now} ###\n
-      current_user: #{current_user.inspect}\n### END ###\n\n"
     end
     
     render 'edit'
@@ -103,7 +87,7 @@ class UsersController < ApplicationController
   def delete
     @user = User.find(params[:id])
     
-    if @user && ( @user == current_user || is_group?("admin") )
+    if @user
       @user.status = "deleted"
       @user.private = true
       
@@ -114,7 +98,7 @@ class UsersController < ApplicationController
         flash[:error] = "Account could not be deleted."
       end
     else
-      flash[:error] = "You do not have the appropriate permissions."
+      flash[:error] = "That user does not have exist."
     end
     
     redirect_to "/"

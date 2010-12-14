@@ -1,0 +1,3 @@
+-@courses.each do |course|
+	- tp = course.time_parsed
+	= tp.gsub(/\r\n/, "\n")

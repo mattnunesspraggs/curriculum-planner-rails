@@ -1,0 +1,44 @@
+- if !@errors.empty?
+	%div.upload_error
+		%h3.c
+			UPLOAD ERRORS
+		- @errors.each do |(c,err)|
+			%div{ :class => ["col3", "grid"] }
+				In
+				%strong= c.code
+				= ":"
+				%ul.indent
+					- err.each do |e|
+						= e
+		%p{ :class => ["c", "clear"] }
+			%strong
+				All other courses were added correctly. Please add these courses by hand OR correct the file, and try uploading again.
+%br
+%p
+	In order to use this feature, you must make sure that you output the curriculum in
+	%strong comma-seperated
+	(sometimes called 
+	%strong comma-delimited
+	or
+	%strong CSV
+	) format. Excel and most other spreadsheet applications allow this - just go to 
+	%em Save As
+	and change the format.
+%p
+	Also, make sure that you check 
+	%strong Delete existing courses
+	if you intend to upload courses from another semester, so that there is no confusion.
+	
+%br
+%br
+
+= form_tag upload_remote_courses_path, { :method => "put", :multipart => true} do
+	%h3= label_tag :file, "File to Upload:"
+	%p.indent
+		= file_field_tag :file
+	%h3
+		= check_box_tag :delete_all
+		= label_tag :delete_all, "Delete existing courses"
+	%br
+	%br
+	= submit_tag "Upload"

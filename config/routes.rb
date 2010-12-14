@@ -1,13 +1,16 @@
 CpRails::Application.routes.draw do
+  resources :options
+
+  resources :pages
+
   match 'signup' => 'users#new', :as => :signup
   match 'register' => 'users#create', :as => :register
   match 'login' => 'sessions#new', :as => :login
   match 'logout' => 'sessions#destroy', :as => :logout
-  match 'about', :controller => "home"
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
   match '/home' => 'users#profile', :as => :home
-  match '/schedule/:action/:course', :controller => "schedule"
-  match '/schedule' => 'users#schedule'
+  match '/schedule/:action/(:course)', :controller => "schedule"
+  match '/schedule' => 'schedule#index'
 
   resources :users do
     member do
@@ -15,6 +18,7 @@ CpRails::Application.routes.draw do
     end
   end
   
+  resource :schedule, :only => [:index]
   resource :session, :only => [:new, :create, :destroy]
 
   resources :courses do
@@ -29,6 +33,8 @@ CpRails::Application.routes.draw do
   
   get "home/index"
   root :to => "home#index"
+
+  match ':slug' => 'pages#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -12,7 +12,7 @@
 	<div class='credits'><span class='big'><%= course.credits %></span><br>credits</div>
 	<h2><%= link_to_unless_current("#{course.code}: #{course.title}", course) %></h2>
 	<div id='link<%= course.id %>'>
-	<%= link_to_if(current_user && !current_user.enrolled_in(course), "Add course to schedule", schedule_add_course_path(course), :remote => true){
+	<%= link_to_if(current_user && !current_user.enrolled_in(course), "Add course to schedule", schedule_add_course_path(course), {:remote => true} ){
 		link_to_if(current_user, "Remove from schedule", schedule_remove_course_path(course), :remote => true){
 			link_to "Add to schedule", "/signup"
 		}
