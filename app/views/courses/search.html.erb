@@ -1,0 +1,33 @@
+<%= content_tag :div, :id => "searchbox" do %>
+	<%= form_tag(remote_search_courses_path, :id => "search_form", :method => "post", :remote => true) do %>
+	 <%= text_field_tag(:q, "Search...") %>
+	<% end %>
+<% end %>
+	
+	<%= content_tag :div, :id => "search-results" do %>
+	<% end %>
+	
+	<%= content_tag :script, :type => "text/javascript" do %>
+	$(document).ready(function() {
+		var q = $('#q');
+		
+		$(q).focusin(function() {
+			$(this).css("color", "black");
+			$(this).val("");
+		});
+		
+		$(q).focusout(function() {
+			if( $(this).val == "" ) {
+				$(this).css("color", "#bbb");
+				$(this).val("Search...");
+			};
+		});
+		
+		$(q).keypress(function(e) {
+			if(e.keyCode == 13) {
+				$('#search_form').submit();
+				$('#search-results').html("<h1>Results loading...</h1>");
+			};
+		});
+	});
+	<% end %>

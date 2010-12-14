@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.xml
   before_filter :admin_required, :except => [:index, :search, :remote_search, :setup]
-  #include CourseParser
+  include CourseParser
   
   protected
   

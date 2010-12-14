@@ -1,0 +1,29 @@
+<h2>Users listing</h2>
+
+<% attrs = [:id, :login, :email, :first_name, :last_name, :preferred_name, :permissions, :private, :created_at, :status] %>
+
+<table style="width: 100%">
+	<tr class="thead">
+	<% attrs.each do |a| %>
+		<td><%= a %></td>
+	<% end %>
+		<td>profile</td>
+		<td>edit</td>
+	</tr>
+	
+	<% @users.each do |u| %>
+	<tr>
+	<% attrs.each do |a| %>
+		<td>
+		<% if a == :email %>
+			<%= mail_to u[a] %>
+		<% else %>
+			<%= u[a] %>
+		<% end %>
+		</td>
+	<% end %>
+		<td><%= link_to "profile", u %>
+		<td><%= link_to "edit", edit_user_path(u) %></td>
+	</tr>
+	<% end %>
+</table>

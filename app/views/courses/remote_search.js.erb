@@ -1,0 +1,6 @@
+<% html_out = "" %>
+<% @courses.each do |course| %>
+	<% html_out += (render :partial => "course", :locals => {:course => course}) %>
+<% end %>
+
+$("#search-results").html("<%= raw(escape_javascript( html_out ) )%>");
