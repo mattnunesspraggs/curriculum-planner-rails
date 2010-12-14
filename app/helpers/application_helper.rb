@@ -1,8 +1,16 @@
 module ApplicationHelper
   mattr_accessor :profile_path
   
+  def delete_status_path(user)
+    "/users/#{user.id}/delete"
+  end
+  
   def signup_path
     "/signup"
+  end
+  
+  def about_path
+    "/about"
   end
   
   def login_path

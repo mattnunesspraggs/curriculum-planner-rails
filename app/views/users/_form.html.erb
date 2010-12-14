@@ -2,6 +2,8 @@
 
 <%= form_for( @user ) do |f| -%>
 
+<%= f.hidden_field :id %>
+
 <p><%= label_tag 'first_name' %><br />
 	<%= f.text_field :first_name %></p>
 
@@ -14,13 +16,32 @@
 <p><%= label_tag 'email' %><br/>
 <%= f.text_field :email %></p>
 
-<p><p><%= label_tag 'private', "Profile visibility" %><br/>
+<p><%= label_tag 'private', "Profile visibility" %><br/>
 <%= f.radio_button :private, true %>
 <%= f.label :private_true, "Private" %>
 <%= f.radio_button :private, false %>
 <%= f.label :private_false, "Public" %>
 </p>
+<br />
+<p><%= label_tag 'password', "Password (leave blank for no change)" %><br />
+<%= f.password_field :password %></p>
 
-<p><%= submit_tag 'Update' %></p>
+<p><%= label_tag 'password_confirmation', 'Confirm Password' %><br/>
+<%= f.password_field :password_confirmation %></p>
+<br />
+<% if is_group?("admin") && @user != current_user %>
+	<p><%= label_tag 'status' %><br/>
+	<%= f.select :status, ["active", "inactive", "locked", "deleted"] %> or 
+	<%= link_to 'Destroy user', @user, :confirm => 'Are you sure?', :method => :delete %></p>
+<% else %>
+	<%= link_to 'Delete account', delete_status_path(@user), :confirm => 'Are you sure? This is [kinda] irreversible!', :class => "red" %><br />
+<% end %>
+<br />
+<p><%= submit_tag 'Save changes' %> or <%= link_to "Never mind.", profile_path %></p>
 
 <% end %>
+<br /><br />
+<% if is_group?("admin") %>
+	<%= link_to "User listing", users_path %><br />
+<% end %>
+<%= link_to "My profile", profile_path %>

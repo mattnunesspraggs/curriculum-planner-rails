@@ -37,7 +37,21 @@ class User < ActiveRecord::Base
   def self.authenticate(login, password)
     return nil if login.blank? || password.blank?
     u = find_by_login(login.downcase) # need to get the salt
-    u && u.authenticated?(password) ? u : nil
+    
+    if u && u.authenticated?(password)
+      user =  u
+      error = nil
+    else
+      user = nil
+      error = "bad login information"
+    end
+    
+    if user && !(user.status == "active")
+      error = "account is " + user.status
+      user = nil
+    end
+    
+    return user, error
   end
 
   def login=(value)
@@ -46,10 +60,6 @@ class User < ActiveRecord::Base
 
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
-  end
-  
-  def status(string)
-    self.status.include?(string)
   end
   
   def name

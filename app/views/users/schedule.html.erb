@@ -1,24 +1,13 @@
-<style>
-	.class-list {
-		float: left;
-		width: 152px;
-	}
-	
-	#class-list div {
-		clear: both;
-		position: static;
-		width: 151px;
-	}
-</style>
+
 <div style="text-align: right; font-size: 40px; padding: 5px; font-weight: 500">
 	<div id='total-credits' style="float: left; width: 145px; font-size: 20px; text-align: center;"></div>
 	YOUR SCHEDULE
 </div>
 
+<div id="class-list">
+</div>
+
 <div class="calendar">
-	<div class="class-list" id="class-list">
-	
-	</div>
 	<div class="times">
 		<div class="day-label">&nbsp;</div>
 		<div class="hour">7am</div>
@@ -164,6 +153,8 @@
 		<div class="hour"></div>
 	</div> -->
 </div>
+
+<div style="clear: both"></div>
 
 <%= render :partial => "update_schedule.js" %>
 <%= content_tag :script, :type => 'text/Javascript' do %>		

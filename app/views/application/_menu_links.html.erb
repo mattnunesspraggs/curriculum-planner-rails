@@ -1,11 +1,18 @@
 <% link = [] %>
 <% if logged_in? %>
-	<% link << ["Home", profile_path] << ["Schedule view", schedule_path] << ["Logout", logout_path] %>
+	<% link << ["Home", profile_path] << ["Schedule view", schedule_path] \
+	<< ["Course Listing", courses_path] << ["Search", search_courses_path]
+	if is_group?("admin") 
+		link << ["User Admin", users_path]
+	else
+		link << ["Edit my details", edit_user_path(current_user)]
+	end
+	link << ["Logout", logout_path] %>
 <% else %>
-	<% link << ["Home", "/"] << ["Login", login_path] << ["Signup", signup_path] %>
+	<% link << ["Home", "/"] << ["Login", login_path] << ["Course Listing", courses_path] << ["Search", search_courses_path] << ["Signup", signup_path] << ["About", about_path]  %>
 <% end %>
 
 <% link.each do |link_label, link_url| %>
-	<% html_class = (link_url == request.request_uri ? "menu-item current" : "menu-item") %>
+	<% html_class = (link_url == request.fullpath ? "menu-item current" : "menu-item") %>
 	<%= link_to link_label, link_url, :class => html_class %>
 <% end %>

@@ -1,5 +1,5 @@
 /* v1.0 | 20080212 */
-
+/*Prep School Pendant*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -135,6 +135,22 @@ a:hover {
 	background-color: #264859;
 }
 
+a.red {
+	color: #BA2F1D;
+}
+
+a.red:hover {
+	background-color: #BA2F1D;
+	color: #eee;
+}
+
+a.subject_code_toggle {
+	display: block;
+	text-align: center;
+	font-size: 2em;
+	padding: 10px 0px;
+}
+
 a.main-banner {
 	text-align: center;
 	display: block;
@@ -187,4 +203,160 @@ a.main-banner:active {
 
 .h2 {
 	font-size: 2em;
+}
+
+div.course_container {
+	padding: 15px 0px;
+}
+
+div.credits {
+	font-size: 8pt;
+	position: relative;
+	top: 0.5em;
+	float: right;
+	text-align: center;
+	min-width: 1em;
+	min-height: 1em;
+	line-height: 1em;
+}
+
+.big {
+	font-size: 3em;
+}
+
+#searchbox {
+	text-align: center;
+}
+
+#q {
+	color: #bbb;
+	font-size: 3em;
+}
+
+/* calendar */
+
+div.class_list {
+	float: left;
+}
+
+div.class_list .class {
+	display: block;
+	padding: 5px;
+}
+
+div.calendar {
+	width: 75%;
+	float: right;
+	font-size: 8pt;
+	display: inline-block;
+	overflow: hidden;
+}
+
+div.day-label {
+	height: 20px;
+}
+
+div.day {
+	float: left;
+	width: 18%;
+	border: 0.1em solid black;
+	border-left: none;
+	position: relative;
+	background: #ddd;
+}
+
+div.hour {
+	border-top: 1px dotted black;
+	height: 24px;
+}
+
+div.day {
+
+}
+
+div.day:hover {
+	background-color: #FFFFCC;
+}
+
+div.weekend {
+	background: #ccf;
+}
+
+.time-block {
+	width: 90%;
+	z-index: 1;
+	position: absolute;
+	padding: 2px;
+	border: 1px solid black;
+	background: red;
+	float: left;
+	opacity: 0.75;
+	margin: 0 3%;
+	overflow: hidden;
+	border-radius: 5px;
+}
+
+div.times {
+	border: 1px solid black;
+	position: relative;
+	background-color: white;
+	width: 4em;
+	float: left;
+}
+
+#class-list {
+	float: left;
+	width: 22%;
+	position: relative;
+}
+
+#class-list div {
+	clear: both;
+	position: static;
+	width: 100%;
+}
+
+/* form errors */
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+/* tables */
+
+.thead {
+	background-color: yellow;
+	font-weight: bold;
+	border-bottom: 1px solid black;
+}
+
+form input:not[type="submit"] {
+	width: 40%;
 }

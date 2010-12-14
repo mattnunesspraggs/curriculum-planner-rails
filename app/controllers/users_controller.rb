@@ -1,12 +1,27 @@
 require 'icalendar'
 
 class UsersController < ApplicationController
-  before_filter :login_required, :except => [:new, :create]
+  before_filter :login_required, :except => [:new, :create, :delete]
+  before_filter :admin_required, :only => [:index, :destroy]
   
   include Icalendar
   # # render new.rhtml
   def new
+    @title = "Signup"
     @user = User.new
+  end
+  
+  def index
+    @title = "[Admin] User listing"
+    @users = User.all
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    flash[:notice] = "User #{@user} deleted."
+    @user.destroy
+
+    redirect_to(users_path)
   end
  
   def create
@@ -27,6 +42,7 @@ class UsersController < ApplicationController
   end
   
   def schedule
+    @title = "Schedule viewer"
     @courses = current_user.courses
     
     respond_to do |format|
@@ -35,6 +51,7 @@ class UsersController < ApplicationController
   end
   
   def edit
+    @title = "Edit"
     if is_group?("admin")
       @user = User.find_by_id(params[:id])
     else
@@ -74,13 +91,33 @@ class UsersController < ApplicationController
   end
   
   def profile
+    @title = "Home"
     @user = current_user
-    
     if @user.name == @user.login
       flash[:notice] = "Hey you! yeah, what's-your-face! Personalize your profile!"
     end
     
     render 'my_profile'
+  end
+  
+  def delete
+    @user = User.find(params[:id])
+    
+    if @user && ( @user == current_user || is_group?("admin") )
+      @user.status = "deleted"
+      @user.private = true
+      
+      if @user.save
+        logout_killing_session!
+        flash[:notice] = "Account deleted. Thanks for trying!"
+      else
+        flash[:error] = "Account could not be deleted."
+      end
+    else
+      flash[:error] = "You do not have the appropriate permissions."
+    end
+    
+    redirect_to "/"
   end
 
   def show

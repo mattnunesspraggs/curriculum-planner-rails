@@ -3,14 +3,30 @@ CpRails::Application.routes.draw do
   match 'register' => 'users#create', :as => :register
   match 'login' => 'sessions#new', :as => :login
   match 'logout' => 'sessions#destroy', :as => :logout
+  match 'about', :controller => "home"
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
   match '/home' => 'users#profile', :as => :home
   match '/schedule/:action/:course', :controller => "schedule"
   match '/schedule' => 'users#schedule'
 
-  resources :courses, :users
+  resources :users do
+    member do
+      get :delete
+    end
+  end
+  
   resource :session, :only => [:new, :create, :destroy]
 
+  resources :courses do
+    collection do
+      get :upload
+      put :upload_remote
+      
+      get :search
+      post :remote_search
+    end
+  end
+  
   get "home/index"
   root :to => "home#index"
 

@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(:version => 20101110212645) do
     t.string   "instructor"
     t.string   "title"
     t.string   "time"
+    t.text     "time_parsed"
     t.string   "subject"
     t.text     "description"
     t.integer  "credits"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "time_parsed"
   end
 
   create_table "courses_time_periods", :id => false, :force => true do |t|
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20101110212645) do
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40
+    t.string   "name",                      :limit => 100, :default => ""
     t.string   "email",                     :limit => 100
     t.string   "crypted_password",          :limit => 40
     t.string   "salt",                      :limit => 40
@@ -59,7 +60,6 @@ ActiveRecord::Schema.define(:version => 20101110212645) do
     t.datetime "remember_token_expires_at"
     t.string   "permissions",                              :default => "user",   :null => false
     t.string   "status",                                   :default => "active", :null => false
-    t.boolean  "private",                                  :default => true
     t.string   "first_name"
     t.string   "last_name"
     t.string   "preferred_name"

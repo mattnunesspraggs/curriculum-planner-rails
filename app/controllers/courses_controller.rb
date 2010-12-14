@@ -1,6 +1,8 @@
 class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.xml
+  before_filter :admin_required, :except => [:index, :search, :remote_search, :setup]
+  include CourseParser
   
   protected
   
@@ -14,9 +16,65 @@ class CoursesController < ApplicationController
   
   public
   
+  def upload
+    
+  end
+  
+  def upload_remote
+    
+    if params[:delete_all]
+      Course.all.each do |course|
+        c.destroy
+      end
+    end
+    
+    if params[:file]
+      courses, records = parse_tsf( params[:file] )
+      
+      # CompositeCourseNumber, DefaultCreditHours, Title, CourseDescription, InstructorFirstNameLastName, Period
+      map = { :code => "CompositeCourseNumber", :credits => "DefaultCreditHours", :description => "CourseDescription", :title => "Title", :instructor => "InstructorFirstNameLastName", :time => "Period"}
+      
+      errors = []
+      
+      courses.each do |course|
+        c = Course.new
+        map.each do |model_attr, field|
+          c[model_attr] = course[field]
+        end
+        
+        if !c.valid? then errors << [course, c.errors] end
+      end
+      
+      if errors.empty?
+        flash[:notice] = courses.count #.to_s + " uploaded successfully."
+      else
+        flash[:error] = errors.count.to_s + " errors"
+        Rails.logger.error(errors.inspect)
+      end
+    else
+      flash[:error] = "File upload failed."
+    end
+    
+    redirect_to "/courses/upload"
+  end
+  
+  def remote_search
+    @q = params["q"]
+    @courses = Course.where("code LIKE :q OR title LIKE :q OR instructor LIKE :q OR description LIKE :q or time LIKE :q", :q => ("%" + params["q"] + "%"))
+    
+    respond_to do |format|
+      format.js {
+      }
+    end
+  end
+  
+  def search
+  end
+  
   def index
     setup()
-    @courses = Course.all
+    @courses = Course.order("code ASC").all
+    @title = "Course listing"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -29,6 +87,7 @@ class CoursesController < ApplicationController
   def show
     setup()
     @course = Course.find(params[:id])
+    @title = @course.to_s
 
     respond_to do |format|
       format.html # show.html.erb
@@ -89,6 +148,7 @@ class CoursesController < ApplicationController
   def destroy
     @course = Course.find(params[:id])
     @course.destroy
+    flash[:message] = "Course {@course.to_s} was destroyed."
 
     respond_to do |format|
       format.html { redirect_to(courses_url) }

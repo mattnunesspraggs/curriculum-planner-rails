@@ -9,15 +9,15 @@
 		top = 21 + ((start - 7) * 25)
 		height = (len * 25) - 6
 		
-		block = content_tag :div, course.code + " " + course.title,
-			:class => "time-block course_#{course.id}", :id => "course_#{course.id}",
-			:style => "top: #{top}px; height: #{height}px; background-color: ##{color}"
+		block = link_to( course.to_s, course, 
+		:class => "time-block course_#{course.id}", :id => "course_#{course.id}",
+		:style => "top: #{top}px; height: #{height}px; background-color: ##{color}" )
 	
-		height = (course.credits / current_user_credits) * 100
-		class_block = content_tag :div, (course.title + "<br />" + course.credits.to_s + 
-		" credits").html_safe, :class => "time-block course_#{course.id}", 
-		:id => "course_#{course.id}",
-		:style => "height: #{height}%; background-color: ##{color}"
+		height = (course.credits / current_user_credits) * 376
+		class_block = link_to((course.title + "<br />" + course.credits.to_s + 
+		" credits").html_safe, course,
+		:class => "time-block course_#{course.id}", :id => "course_#{course.id}",
+		:style => "height: #{height}px; background-color: ##{color}")
 				
 		classes << class_block
 		

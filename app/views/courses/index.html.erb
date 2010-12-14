@@ -1,8 +1,25 @@
-<h1>Listing all courses</h1>
+<style>
+	/* ... beggars can't be choosers. */
+	.course_container {
+		display: none;
+	}
+</style>
 
+<h1>Listing all courses</h1>
+<% if is_group?("admin") %>
+	<%= link_to "Add", new_course_path %> or 
+	<%= link_to "Upload new curriculum", upload_courses_path %>
+<% end %>
+
+<% subject_code = "" %>
 <% @courses.each do |course| %>
 	
-	<div class='course_container'>
+	<% if course.subject != subject_code %>
+		<% subject_code = course.subject %>
+		<a class="subject_code_toggle" id="<%= subject_code %>" href="javascript:toggleSubject('<%= subject_code %>');"><%= SUBJECT_TAGS[subject_code] %></a>
+	<% end %>
+	
+	<div class='course_container <%= subject_code %>'>
 		<div class='credits'><span class='big'><%= course.credits %></span><br>credits</div>
 		<h2><%= link_to_unless_current("#{course.code}: #{course.title}", course) %></h2>
 		<div id='link<%= course.id %>'>
@@ -22,4 +39,10 @@
 	
 <% end %>
 
+<script type="text/javascript">
+	function toggleSubject(subject) {
+		$("." + subject).slideToggle();
+		$("a.subject_code_toggle").not("#" + subject).slideToggle();
+	}
+</script>
 <br />

@@ -2,7 +2,7 @@
     <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_#{key}" %>
     <%= content_tag :script, :type => "text/javascript" do -%>
         setTimeout(function() {
-			$('div#notice_<%= key %>').slideUp("$('div#notice_<%= key %>').remove();")
+			$('div#notice_<%= key %>').slideUp(400, function() {$(this).remove();});
 			}, 15000);
     <% end %>
 	<% flash.discard %>
@@ -10,6 +10,6 @@
 
 <%= content_tag :script, :type => "text/javascript" do %>
 	$(document).ready( function() {
-		$('.message').slideToggle();
-	})
+		$('.message').slideDown();
+	});
 <% end %>
