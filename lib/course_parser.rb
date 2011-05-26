@@ -77,7 +77,7 @@ module CourseParser
     past_dayset = ""
     times = unparsed_time.split(/,[\s]*/)
     times.each do |period|
-      t = TimePeriod.where("`time` = ?", period)
+      t = TimePeriod.where("time = ?", period)
       
       if t.empty?
         p_match = period.match(PERIOD_REGEX)
