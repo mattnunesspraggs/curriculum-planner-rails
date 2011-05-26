@@ -70,7 +70,7 @@ class CoursesController < ApplicationController
   end
   
   def random
-    @course = Course.order("RAND()").limit(1).all.first
+    @course = Course.order("random()").limit(1).all.first
     @title = @course.to_s
     
     respond_to do |format|
