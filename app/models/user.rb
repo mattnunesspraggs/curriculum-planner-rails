@@ -115,9 +115,5 @@ class User < ActiveRecord::Base
       return h.to_s + " hours " + (m*60).to_s + " minutes"
     end
   end
-  
-  protected
-  
-
 
 end
