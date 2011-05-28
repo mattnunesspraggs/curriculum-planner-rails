@@ -1,1 +1,112 @@
-LOL readme soon.
+ _______     ________       _       ______   ____    ____  ________  
+|_   __ \   |_   __  |     / \     |_   _ `.|_   \  /   _||_   __  | 
+  | |__) |    | |_ \_|    / _ \      | | `. \ |   \/   |    | |_ \_| 
+  |  __ /     |  _| _    / ___ \     | |  | | | |\  /| |    |  _| _  
+ _| |  \ \_  _| |__/ | _/ /   \ \_  _| |_.' /_| |_\/_| |_  _| |__/ | 
+|____| |___||________||____| |____||______.'|_____||_____||________|
+********************************************************************
+
+	Author:		Matthew Nunes
+				Bennington College 2011
+				matt@mattnunes.com
+				http://mattnunes.com
+				
+	Title:		[plan]-i-fication
+	
+	Descrip:	A web-based tool, using Ruby on Rails, to plan out a 
+				semester schedule.
+				
+	License:
+	
+	Copyright (C) 2011 by Matthew Nunes
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy
+	of this software and associated documentation files (the "Software"), to deal
+	in the Software without restriction, including without limitation the rights
+	to use, copy, modify, merge, publish, distribute, and sublicense
+	copies of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
+
+	- The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
+	- No person may sell or otherwise make profit from the distribution of this
+	Software, in whole or in part.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+********************************************************************
+
+*******************
+* 0. GET THE CODE *
+*******************
+
+	First off, make sure you have installed Ruby 1.9.2, RubyGems, and Ruby on Rails (through
+	RubyGems).
+
+	You should also know how to do this -
+		git pull git://github.com/mattnunes/curriculum-planner-rails.git
+		
+	You should also take this moment to set up an appropriate web server and 
+	database engine.
+
+**************************
+* 1. SET UP THE DATABASE *
+**************************
+
+	You can use any database which ActiveRecord supports. Just be sure to add the
+	correct driver gem in "Gemfile".
+	
+	Next, navigate to the the software directory root, and run the command "bundle".
+	This will install all relevant gems.
+	
+	Next, create a relevant "database.yaml" for your database driver (or look up how
+	to create it).
+	
+	Finally, run "rake db:create:all" and "rake db:schema:load".
+
+*********************
+* 2. ADD FIRST USER *
+*********************
+
+	Start your Rails web server and navigate to its address in a web browser. If all is well,
+	that is, you see no error message, you may proceed. Otherwise, you should track down the
+	error(s).
+	
+	Navigate to http://{address}/signup and create yourself an account. Then manually edit your
+	database record (table "users"), changing the "permissions" field from "user" to "admin".
+	Repeat this for all administrative users. Future versions may change this.
+
+*********************
+* 3. ADD CURRICULUM *
+*********************
+
+	This section is highly dependent on the curriculum file. As a general rule, the files must
+	be in "CSV" or "Windows CSV" format, with the following fields:
+	
+		CompositeCourseNumber			The course code, unique string, AA(A)####(L).##
+		DefaultCreditHours				Number of credits (integer)
+		Title							Course title, string
+		CourseDescription				String
+		InstructorFirstNameLastName		String
+		Period							Time, Bennington style.
+		
+	Navigate to http://{address}/courses/upload and follow the instructions.
+	
+***************************
+* 4. EXPLORE and DOCUMENT *
+***************************
+
+	There are pages for admin to administer users, courses, and pages. Feel free to
+	play around with these. One model, in particular, is important - pages. Pages
+	are the "static" pages that users see. You should create four, at least:
+	
+	- About (slug: about)
+	- 404 Page Not Found (slug: error404)
+	- What to do with an ICS file (slug: import-ics-file)
+	- Adding and removing courses from a schedule (slug: help-adding-courses)
+	
+	To see what I did with my Pages, see "pages.sql".
